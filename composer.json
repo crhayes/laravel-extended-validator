@@ -1,0 +1,25 @@
+{
+    "name": "crhayes/validation",
+    "description": "",
+    "authors": [
+        {
+            "name": "Chris Hayes",
+            "email": "chris@chrishayes.ca"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*",
+        "illuminate/http": "4.1.*",
+        "illuminate/validation": "4.1.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Crhayes\\Validation\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

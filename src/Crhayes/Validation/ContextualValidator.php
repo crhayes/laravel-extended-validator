@@ -214,7 +214,10 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 			try
 			{
-				$rule = preg_replace('/@(\w+)/e', '$replacements["$1"]', $rule);
+				$rule = preg_replace_callback('/@(\w+)/', function($matches) use($replacements)
+				{
+					return $replacements[$matches[1]];
+				}, $rule);
 			}
 			catch (\ErrorException $e)
 			{

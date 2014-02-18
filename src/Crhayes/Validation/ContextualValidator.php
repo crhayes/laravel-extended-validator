@@ -184,6 +184,16 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Determine if the data fails the validation rules.
+	 *
+	 * @return bool
+	 */
+	public function fails()
+	{
+		return ! $this->passes();
+	}
+
+	/**
 	 * Get the messages for the instance.
 	 *
 	 * @return \Illuminate\Support\MessageBag

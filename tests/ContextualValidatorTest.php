@@ -85,4 +85,10 @@ class ContextualValidatorTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals($this->input, $this->validator->getAttributes());
 	}
+
+	public function testSetAttributes()
+	{
+		$this->validator->setAttributes(['website' => 'http://laravel.com']);
+		$this->assertEquals(['website' => 'http://laravel.com'], $this->validator->getAttributes());
+	}
 }

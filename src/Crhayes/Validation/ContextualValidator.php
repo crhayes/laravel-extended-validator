@@ -81,6 +81,19 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Set the validation attributes.
+	 *
+	 * @param  array $attributes
+	 * @return Crhayes\Validation\GroupedValidator
+	 */
+	public function setAttributes($attributes = null)
+	{
+		$this->attributes = $attributes ?: Input::all();
+
+		return $this;
+	}
+
+	/**
 	 * Retrieve the validation attributes.
 	 *
 	 * @return array

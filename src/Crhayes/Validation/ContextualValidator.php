@@ -95,6 +95,19 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Set the validation context.
+	 *
+	 * @param  array|string $context
+	 * @return Crhayes\Validation\GroupedValidator
+	 */
+	public function setContext($context)
+	{
+		$this->contexts = is_array($context) ? $context : [$context];
+
+		return $this;
+	}
+
+	/**
 	 * Retrieve the valiation context.
 	 * 
 	 * @return array

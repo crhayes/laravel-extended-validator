@@ -80,4 +80,9 @@ class ContextualValidatorTest extends PHPUnit_Framework_TestCase
 		$this->validator->setContext(['edit']);
 		$this->assertEquals(['edit'], $this->validator->getContexts());
 	}
+
+	public function testGetAttributes()
+	{
+		$this->assertEquals($this->input, $this->validator->getAttributes());
+	}
 }

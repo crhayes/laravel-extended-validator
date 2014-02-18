@@ -81,6 +81,16 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Retrieve the validation attributes.
+	 *
+	 * @return array
+	 */
+	public function getAttributes()
+	{
+		return $this->attributes;
+	}
+
+	/**
 	 * Add a validation context.
 	 * 
 	 * @param array 	$context

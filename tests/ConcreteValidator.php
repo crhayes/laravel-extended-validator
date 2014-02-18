@@ -1,5 +1,7 @@
 <?php
 
+namespace Crhayes\Validation\Tests;
+
 use Crhayes\Validation\ContextualValidator;
 
 class ConcreteValidator extends ContextualValidator

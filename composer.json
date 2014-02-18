@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Crhayes\\Validation\\": "src/"
+            "Crhayes\\Validation\\": "src/",
+            "Crhayes\\Validation\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev"

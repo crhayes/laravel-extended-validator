@@ -1,6 +1,7 @@
 <?php
 
 use Mockery as m;
+use Crhayes\Validation\Tests\ConcreteValidator;
 
 class ContextualValidatorTest extends PHPUnit_Framework_TestCase
 {

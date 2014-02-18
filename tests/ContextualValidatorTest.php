@@ -27,7 +27,7 @@ class ContextualValidatorTest extends PHPUnit_Framework_TestCase
 
 	public function testMakeMethodReturnsContextualValidator()
 	{
-		$this->assertInstanceOf('\Crhayes\Validation\ContextualValidator', ConcreteValidator::make());
+		$this->assertInstanceOf('\Crhayes\Validation\ContextualValidator', ConcreteValidator::make($this->input));
 	}
 
 	public function testAddContextInConstructor()

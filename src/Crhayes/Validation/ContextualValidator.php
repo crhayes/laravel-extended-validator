@@ -81,6 +81,29 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Set the validation attributes.
+	 *
+	 * @param  array $attributes
+	 * @return Crhayes\Validation\GroupedValidator
+	 */
+	public function setAttributes($attributes = null)
+	{
+		$this->attributes = $attributes ?: Input::all();
+
+		return $this;
+	}
+
+	/**
+	 * Retrieve the validation attributes.
+	 *
+	 * @return array
+	 */
+	public function getAttributes()
+	{
+		return $this->attributes;
+	}
+
+	/**
 	 * Add a validation context.
 	 * 
 	 * @param array 	$context
@@ -90,6 +113,19 @@ abstract class ContextualValidator implements MessageProviderInterface
 		$context = is_array($context) ? $context : [$context];
 		
 		$this->contexts = array_merge($this->contexts, $context);
+
+		return $this;
+	}
+
+	/**
+	 * Set the validation context.
+	 *
+	 * @param  array|string $context
+	 * @return Crhayes\Validation\GroupedValidator
+	 */
+	public function setContext($context)
+	{
+		$this->contexts = is_array($context) ? $context : [$context];
 
 		return $this;
 	}
@@ -145,6 +181,16 @@ abstract class ContextualValidator implements MessageProviderInterface
 		$this->errors = $validation->messages();
 
 		return false;
+	}
+
+	/**
+	 * Determine if the data fails the validation rules.
+	 *
+	 * @return bool
+	 */
+	public function fails()
+	{
+		return ! $this->passes();
 	}
 
 	/**

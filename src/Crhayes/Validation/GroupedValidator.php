@@ -78,6 +78,16 @@ class GroupedValidator
 
 		return (count($this->errors)) ? false : true;
 	}
+	
+	/**
+	 * Perform a check to see if any of the validators have failed.
+	 * 
+	 * @return boolean
+	 */
+	 public function fails()
+	 {
+	 	return ! $this->passes();
+	 }
 
 	/**
 	 * Return the combined errors from all validators.

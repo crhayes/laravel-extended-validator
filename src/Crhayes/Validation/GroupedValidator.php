@@ -13,14 +13,14 @@ class GroupedValidator
 	 * 
 	 * @var array
 	 */
-	private $validators = [];
+	private $validators = array();
 
 	/**
 	 * An array of errors returned from all of the validators.
 	 * 
 	 * @var array
 	 */
-	private $errors = [];
+	private $errors = array();
 
 	/**
 	 * Create a new GroupedValidator, with the option of specifying
@@ -28,7 +28,7 @@ class GroupedValidator
 	 * 
 	 * @param mixed 	$validator
 	 */
-	public function __construct($validator = [])
+	public function __construct($validator = array())
 	{
 		if ($validator) $this->addValidator($validator);
 	}
@@ -39,7 +39,7 @@ class GroupedValidator
 	 * @param  mixed 	$validator
 	 * @return Crhayes\Validation\GroupedValidator
 	 */
-	public static function make($validator = [])
+	public static function make($validator = array())
 	{
 		return new static($validator);
 	}
@@ -52,7 +52,7 @@ class GroupedValidator
 	 */
 	public function addValidator(MessageProviderInterface $validator)
 	{
-		$validator = is_array($validator) ? $validator : [$validator];
+		$validator = is_array($validator) ? $validator : array($validator);
 		
 		$this->validators = array_merge($this->validators, $validator);
 

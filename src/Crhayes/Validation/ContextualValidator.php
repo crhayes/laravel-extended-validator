@@ -17,42 +17,42 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 * 
 	 * @var array
 	 */
-	protected $attributes = [];
+	protected $attributes = array();
 
 	/**
 	 * Store the validation rules.
 	 * 
 	 * @var array
 	 */
-	protected $rules = [];
+	protected $rules = array();
 
 	/**
 	 * Store any custom messages for validation rules.
 	 * 
 	 * @var array
 	 */
-	protected $messages = [];
+	protected $messages = array();
 
 	/**
 	 * Store any contexts we are validating within.
 	 * 
 	 * @var array
 	 */
-	protected $contexts = [];
+	protected $contexts = array();
 
 	/**
 	 * Store replacement values for any bindings in our rules.
 	 * 
 	 * @var array
 	 */
-	protected $replacements = [];
+	protected $replacements = array();
 
 	/**
 	 * Store any validation messages generated.
 	 * 
 	 * @var array
 	 */
-	protected $errors = [];
+	protected $errors = array();
 
 	/**
 	 * Our constructor will store the attributes we are validating, and
@@ -110,7 +110,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 */
 	public function addContext($context)
 	{
-		$context = is_array($context) ? $context : [$context];
+		$context = is_array($context) ? $context : array($context);
 		
 		$this->contexts = array_merge($this->contexts, $context);
 
@@ -125,7 +125,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 */
 	public function setContext($context)
 	{
-		$this->contexts = is_array($context) ? $context : [$context];
+		$this->contexts = is_array($context) ? $context : array($context);
 
 		return $this;
 	}
@@ -162,7 +162,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 */
 	public function getReplacement($key)
 	{
-		return array_get($this->replacements, $key, []);
+		return array_get($this->replacements, $key, array());
 	}
 
 	/**
@@ -224,7 +224,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	{
 		if ( ! $this->hasContext())	return $this->rules;
 
-		$rulesInContext = array_get($this->rules, self::DEFAULT_KEY, []);
+		$rulesInContext = array_get($this->rules, self::DEFAULT_KEY, array());
 
 		foreach ($this->contexts as $context)
 		{

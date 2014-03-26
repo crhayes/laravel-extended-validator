@@ -226,3 +226,36 @@ $groupedValidator = GroupedValidator::make()
     ->addValidator($userValidator)
     ->addValidator($carValidator);
 ```
+
+# Adding Custom Complex Validation
+Adding complex validation to your validation services is as easy as follows:
+```php
+<?php
+
+namespace App\Services\Validators;
+
+use Crhayes\Validation\ContextualValidator;
+
+class UserValidator extends ContextualValidator
+{
+    protected $rules = [
+        'default' => [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email'
+        ],
+        'edit' => [
+            'email' => 'required|email|unique:users,email,@id'
+        ]
+    ]
+    
+    protected function addConditionalRules($validator)
+    {
+        $validator->sometimes('some_field', 'required' function($input)
+        {
+            // perform a check
+        });
+    }
+} 
+```
+All we do is add the ```addConditionalRules($validator)``` method to our validation service, which accepts an instance of ```Illuminate\Validation\Validator```, allowing us to utilize Laravel's built-in support for complex validations.

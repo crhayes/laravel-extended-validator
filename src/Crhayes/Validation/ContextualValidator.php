@@ -81,6 +81,14 @@ abstract class ContextualValidator implements MessageProviderInterface
 	}
 
 	/**
+	 * Stub method that can be extended by child classes.
+	 * Passes a validator object and allows for adding complex conditional validations.
+	 * 
+	 * @param \Illuminate\Validation\Validator $validator
+	 */
+	protected function addConditionalRules($validator) {}
+
+	/**
 	 * Set the validation attributes.
 	 *
 	 * @param  array $attributes
@@ -174,11 +182,13 @@ abstract class ContextualValidator implements MessageProviderInterface
 	{
 		$rules = $this->bindReplacements($this->getRulesInContext());
 
-		$validation = Validator::make($this->attributes, $rules, $this->messages);
+		$validator = Validator::make($this->attributes, $rules, $this->messages);
 
-		if ($validation->passes()) return true;
+		$this->addConditionalRules($validator);
 
-		$this->errors = $validation->messages();
+		if ($validator->passes()) return true;
+
+		$this->errors = $validator->messages();
 
 		return false;
 	}

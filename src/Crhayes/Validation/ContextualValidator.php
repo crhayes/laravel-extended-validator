@@ -230,7 +230,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 * 
 	 * @return array
 	 */
-	private function getRulesInContext()
+	protected function getRulesInContext()
 	{
 		if ( ! $this->hasContext())	return $this->rules;
 
@@ -262,7 +262,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 * @param  array 	$rules
 	 * @return array
 	 */
-	private function bindReplacements($rules)
+	protected function bindReplacements($rules)
 	{
 		foreach ($rules as $field => &$rule)
 		{
@@ -299,7 +299,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	 * 
 	 * @return boolean
 	 */
-	private function hasContext()
+	protected function hasContext()
 	{
 		return (count($this->contexts) OR array_get($this->rules, self::DEFAULT_KEY));
 	}

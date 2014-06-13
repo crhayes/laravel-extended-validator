@@ -13,14 +13,14 @@ class GroupedValidator
 	 * 
 	 * @var array
 	 */
-	private $validators = array();
+	protected $validators = array();
 
 	/**
 	 * An array of errors returned from all of the validators.
 	 * 
 	 * @var array
 	 */
-	private $errors = array();
+	protected $errors = array();
 
 	/**
 	 * Create a new GroupedValidator, with the option of specifying

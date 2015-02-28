@@ -3,21 +3,21 @@
 namespace Crhayes\Validation;
 
 use Crhayes\Validation\Exceptions\MissingValidatorException;
-use Illuminate\Support\Contracts\MessageProviderInterface;
+use Illuminate\Contracts\Support\MessageProvider;
 
 class GroupedValidator
 {
 	/**
 	 * An array of Validator objects we will spin through
 	 * when running our grouped validation.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $validators = array();
 
 	/**
 	 * An array of errors returned from all of the validators.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $errors = array();
@@ -25,7 +25,7 @@ class GroupedValidator
 	/**
 	 * Create a new GroupedValidator, with the option of specifying
 	 * either a single validator object or an array of validators.
-	 * 
+	 *
 	 * @param mixed 	$validator
 	 */
 	public function __construct($validator = array())
@@ -35,7 +35,7 @@ class GroupedValidator
 
 	/**
 	 * Static shorthand for creating a new grouped validator.
-	 * 
+	 *
 	 * @param  mixed 	$validator
 	 * @return Crhayes\Validation\GroupedValidator
 	 */
@@ -47,13 +47,13 @@ class GroupedValidator
 	/**
 	 * Add a validator to spin through. Accepts either a single
 	 * Validator object or an array of validators.
-	 * 
+	 *
 	 * @param mixed 	$validator
 	 */
-	public function addValidator(MessageProviderInterface $validator)
+	public function addValidator(MessageProvider $validator)
 	{
 		$validator = is_array($validator) ? $validator : array($validator);
-		
+
 		$this->validators = array_merge($this->validators, $validator);
 
 		return $this;
@@ -61,7 +61,7 @@ class GroupedValidator
 
 	/**
 	 * Perform a check to see if all of the validators have passed.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function passes()
@@ -78,10 +78,10 @@ class GroupedValidator
 
 		return (count($this->errors)) ? false : true;
 	}
-	
+
 	/**
 	 * Perform a check to see if any of the validators have failed.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	 public function fails()
@@ -91,7 +91,7 @@ class GroupedValidator
 
 	/**
 	 * Return the combined errors from all validators.
-	 * 
+	 *
 	 * @return Illuminate\Support\MessageBag
 	 */
 	public function errors()

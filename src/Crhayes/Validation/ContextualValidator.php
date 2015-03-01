@@ -4,61 +4,61 @@ namespace Crhayes\Validation;
 
 use Crhayes\Validation\Exceptions\ReplacementBindingException;
 use Crhayes\Validation\Exceptions\ValidatorContextException;
-use Illuminate\Support\Contracts\MessageProviderInterface;
+use Illuminate\Contracts\Support\MessageProvider;
 use Input;
 use Validator;
 
-abstract class ContextualValidator implements MessageProviderInterface
+abstract class ContextualValidator implements MessageProvider
 {
 	const DEFAULT_KEY = 'default';
 
 	/**
 	 * Store the attributes we are validating.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $attributes = array();
 
 	/**
 	 * Store the validation rules.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $rules = array();
 
 	/**
 	 * Store any custom messages for validation rules.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $messages = array();
 
 	/**
 	 * Store any contexts we are validating within.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $contexts = array();
 
 	/**
 	 * Store replacement values for any bindings in our rules.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $replacements = array();
 
 	/**
 	 * Store any validation messages generated.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $errors = array();
 
 	/**
 	 * Our constructor will store the attributes we are validating, and
-	 * may also take as a second parameter the contexts within which 
+	 * may also take as a second parameter the contexts within which
 	 * we are validating.
-	 * 
+	 *
 	 * @param array 	$attributes
 	 * @param mixed 	$context
 	 */
@@ -71,7 +71,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Static shorthand for creating a new validator.
-	 * 
+	 *
 	 * @param  mixed 	$validator
 	 * @return Crhayes\Validation\GroupedValidator
 	 */
@@ -83,7 +83,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	/**
 	 * Stub method that can be extended by child classes.
 	 * Passes a validator object and allows for adding complex conditional validations.
-	 * 
+	 *
 	 * @param \Illuminate\Validation\Validator $validator
 	 */
 	protected function addConditionalRules($validator) {}
@@ -113,13 +113,13 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Add a validation context.
-	 * 
+	 *
 	 * @param array 	$context
 	 */
 	public function addContext($context)
 	{
 		$context = is_array($context) ? $context : array($context);
-		
+
 		$this->contexts = array_merge($this->contexts, $context);
 
 		return $this;
@@ -140,7 +140,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Retrieve the valiation context.
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getContexts()
@@ -150,7 +150,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Bind a replacement value to a placeholder in a rule.
-	 * 
+	 *
 	 * @param  string 	$field
 	 * @param  array 	$replacement
 	 * @return Crhayes\Validation\ContextualValidator
@@ -164,7 +164,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Get a bound replacement by key.
-	 * 
+	 *
 	 * @param  string $key
 	 * @return array
 	 */
@@ -175,7 +175,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Perform a validation check against our attributes.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function passes()
@@ -215,7 +215,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Return any errors.
-	 * 
+	 *
 	 * @return Illuminate\Support\MessageBag
 	 */
 	public function errors()
@@ -227,7 +227,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Get the validaton rules within the context of the current validation.
-	 * 
+	 *
 	 * @return array
 	 */
 	protected function getRulesInContext()
@@ -242,8 +242,8 @@ abstract class ContextualValidator implements MessageProviderInterface
 			{
 				throw new ValidatorContextException(
 					sprintf(
-						"'%s' does not contain the validation context '%s'", 
-						get_called_class(), 
+						"'%s' does not contain the validation context '%s'",
+						get_called_class(),
 						$context
 					)
 				);
@@ -258,7 +258,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 	/**
 	 * Spin through our contextual rules array and bind any replacement
 	 * values to placeholders within the rules.
-	 * 
+	 *
 	 * @param  array 	$rules
 	 * @return array
 	 */
@@ -296,7 +296,7 @@ abstract class ContextualValidator implements MessageProviderInterface
 
 	/**
 	 * Check if the current validation has a context.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	protected function hasContext()

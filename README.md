@@ -51,11 +51,11 @@ class UserValidator extends ContextualValidator
     protected $rules = [
         'first_name' => 'required',
         'last_name' => 'required'
-    ]
+    ];
 
     protected $messages = [
         'first_name.required' => 'First name is required!'
-    ]
+    ];
 }
 ```
 This service is then instantiated and the validation works much the same as Laravel's built-in validation.
@@ -104,7 +104,7 @@ class UserValidator extends ContextualValidator
         'edit' => [
             'website' => 'required|url' // add a new rule for website while editing
         ]
-    ]
+    ];
 }
 ```
 Let's see how we can use one of the contexts during the creation of a user:
@@ -168,7 +168,7 @@ class UserValidator extends ContextualValidator
         'edit' => [
             'email' => 'required|email|unique:users,email,@id'
         ]
-    ]
+    ];
 } 
 ```
 Notice that we have set the email field to be unique by default. However, when the users submits an edit form we want to ignore the current user's id. We use the @id placeholder, and then replace that with the desired value:
@@ -247,7 +247,7 @@ class UserValidator extends ContextualValidator
         'edit' => [
             'email' => 'required|email|unique:users,email,@id'
         ]
-    ]
+    ];
     
     protected function addConditionalRules($validator)
     {

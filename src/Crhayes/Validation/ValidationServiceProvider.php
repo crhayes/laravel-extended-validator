@@ -18,7 +18,7 @@ class ValidationServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('crhayes/validation');
+		//
 	}
 
 	/**
